@@ -1,0 +1,200 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="LinkHubDbModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="tbl_User">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="UserId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserEmail" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Password" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Role" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="tbl_User_Log2">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Esemeny" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Eredmeny" Type="nchar" MaxLength="10" Nullable="false" />
+          <Property Name="Ido" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tbl_User2">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="UserId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserEmail" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Password" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Role" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <Function Name="Adatmigracio" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="Adatmigracio_test" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="Logolas" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Esemeny" Type="nvarchar" Mode="In" />
+          <Parameter Name="Eredmeny" Type="nchar" Mode="In" />
+        </Function>
+        <Function Name="Logolas2" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Esemeny" Type="nvarchar" Mode="In" />
+          <Parameter Name="Eredmeny" Type="nchar" Mode="In" />
+          <Parameter Name="Ido" Type="datetime" Mode="In" />
+        </Function>
+        <Function Name="Urites" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <EntityContainer Name="LinkHubDbModelStoreContainer">
+          <EntitySet Name="tbl_User" EntityType="Self.tbl_User" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_User_Log2" EntityType="Self.tbl_User_Log2" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_User2" EntityType="Self.tbl_User2" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="LinkHubDbModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="tbl_User">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="UserId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserEmail" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Role" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="tbl_User2">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="UserId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserEmail" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Role" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityContainer Name="UserDbEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="tbl_User" EntityType="Self.tbl_User" />
+          <EntitySet Name="tbl_User2" EntityType="Self.tbl_User2" />
+          <FunctionImport Name="Adatmigracio" />
+          <FunctionImport Name="Adatmigracio_test" ReturnType="Collection(LinkHubDbModel.Adatmigracio_test_Result)" />
+          <FunctionImport Name="Logolas">
+            <Parameter Name="Esemeny" Mode="In" Type="String" />
+            <Parameter Name="Eredmeny" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="Logolas2">
+            <Parameter Name="Esemeny" Mode="In" Type="String" />
+            <Parameter Name="Eredmeny" Mode="In" Type="String" />
+            <Parameter Name="Ido" Mode="In" Type="DateTime" />
+          </FunctionImport>
+          <EntitySet Name="tbl_User_Log2" EntityType="LinkHubDbModel.tbl_User_Log2" />
+          <FunctionImport Name="Urites" />
+        </EntityContainer>
+        <ComplexType Name="Adatmigracio_test_Result">
+          <Property Type="Int32" Name="UserId" Nullable="false" />
+          <Property Type="String" Name="UserEmail" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="Password" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="Role" Nullable="true" MaxLength="50" />
+        </ComplexType>
+        <EntityType Name="tbl_User_Log2">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Esemeny" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Eredmeny" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="Ido" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="LinkHubDbModelStoreContainer" CdmEntityContainer="UserDbEntities">
+          <EntitySetMapping Name="tbl_User">
+            <EntityTypeMapping TypeName="LinkHubDbModel.tbl_User">
+              <MappingFragment StoreEntitySet="tbl_User">
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="UserEmail" ColumnName="UserEmail" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Role" ColumnName="Role" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_User2">
+            <EntityTypeMapping TypeName="LinkHubDbModel.tbl_User2">
+              <MappingFragment StoreEntitySet="tbl_User2">
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="UserEmail" ColumnName="UserEmail" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Role" ColumnName="Role" />
+              </MappingFragment>
+            </EntityTypeMapping>
+            <EntityTypeMapping TypeName="LinkHubDbModel.tbl_User2">
+              <ModificationFunctionMapping>
+                <UpdateFunction FunctionName="LinkHubDbModel.Store.Adatmigracio" />
+                <InsertFunction FunctionName="LinkHubDbModel.Store.Adatmigracio_test" >
+                  <ResultBinding Name="UserId" ColumnName="UserId" />
+                  <ResultBinding Name="UserEmail" ColumnName="UserEmail" />
+                  <ResultBinding Name="Password" ColumnName="Password" />
+                  <ResultBinding Name="Role" ColumnName="Role" />
+                </InsertFunction>
+                <DeleteFunction FunctionName="LinkHubDbModel.Store.Urites" />
+              </ModificationFunctionMapping>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="Adatmigracio" FunctionName="LinkHubDbModel.Store.Adatmigracio" />
+          <FunctionImportMapping FunctionImportName="Adatmigracio_test" FunctionName="LinkHubDbModel.Store.Adatmigracio_test">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="LinkHubDbModel.Adatmigracio_test_Result">
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="UserEmail" ColumnName="UserEmail" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Role" ColumnName="Role" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="Logolas" FunctionName="LinkHubDbModel.Store.Logolas" />
+          <FunctionImportMapping FunctionImportName="Logolas2" FunctionName="LinkHubDbModel.Store.Logolas2" />
+          <EntitySetMapping Name="tbl_User_Log2">
+            <EntityTypeMapping TypeName="LinkHubDbModel.tbl_User_Log2">
+              <MappingFragment StoreEntitySet="tbl_User_Log2">
+                <ScalarProperty Name="Ido" ColumnName="Ido" />
+                <ScalarProperty Name="Eredmeny" ColumnName="Eredmeny" />
+                <ScalarProperty Name="Esemeny" ColumnName="Esemeny" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+            <EntityTypeMapping TypeName="LinkHubDbModel.tbl_User_Log2">
+              <ModificationFunctionMapping>
+                <InsertFunction FunctionName="LinkHubDbModel.Store.Logolas2">
+                  <ScalarProperty Name="Ido" ParameterName="Ido" />
+                  <ScalarProperty Name="Eredmeny" ParameterName="Eredmeny" />
+                  <ScalarProperty Name="Esemeny" ParameterName="Esemeny" />
+                </InsertFunction>
+              </ModificationFunctionMapping>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="Urites" FunctionName="LinkHubDbModel.Store.Urites" />
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

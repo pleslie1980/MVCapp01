@@ -1,0 +1,45 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - My ASP.NET Application</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    
+
+</head>
+<body>
+    <div class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container">
+            <div class="navbar-header">
+                @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item@(this.ViewContext.RouteData.Values["action"].ToString()=="Index" ? " active":"")">@Html.ActionLink("Home", "Index", "Home", new { area = "body-content" }, new { @class = "nav-link" })</li>
+                    <li class="nav-item@(this.ViewContext.RouteData.Values["action"].ToString()=="About" ? " active":"")">@Html.ActionLink("About", "About", "Home", new { area = "body-content" }, new { @class = "nav-link" })</li>
+                    <li class="nav-item@(this.ViewContext.RouteData.Values["action"].ToString()=="Contact" ? " active":"")">@Html.ActionLink("Contact", "Contact", "Home", new { area = "body-content" }, new { @class = "nav-link" })</li>
+                    <li class="nav-item@(this.ViewContext.RouteData.Values["action"].ToString()=="Index2" ? " active":"")">@Html.ActionLink("tbl_User", "Index", "tbl_User", new { area = "body-content" }, new { @class = "nav-link" })</li>
+                    <li class="nav-item@(this.ViewContext.RouteData.Values["action"].ToString()=="Index3" ? " active":"")">@Html.ActionLink("tbl_User2", "Index", "tbl_User2", new { area = "body-content" }, new { @class = "nav-link" })</li>
+                    <li class="nav-item@(this.ViewContext.RouteData.Values["action"].ToString()=="SQL" ? " active":"")">@Html.ActionLink("SQL", "Index", "SQL", new { area = "body-content" }, new { @class = "nav-link" })</li>
+                </ul>
+                <p class="nav navbar-text navbar-right">Hello, @User.Identity.Name!</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
+        <footer>
+            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+        </footer>
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+
+</body>
+</html>
